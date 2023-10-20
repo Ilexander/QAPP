@@ -1,24 +1,18 @@
 <template>
   <div class="w-full">
-    <toolbar />
-    <div class="bg-gray-900 flex py-3">
-      <BodyAside />
-      <BodyTable />
-    </div>
+    <Toolbar />
+    <Body />
   </div>
 </template>
 <script>
-import BodyAside from "./components/Body/aside/body-aside.vue";
-import BodyTable from "./components/Body/table/body-table.vue";
-import toolbar from "./components/toolbar/toolbar.vue";
+import Body from "./components/Body/body.vue";
+import Toolbar from "./components/toolbar/toolbar.vue";
 
 export default {
   data() {
-    return {
-      currentPath: '/'
-    };
+    return {};
   },
-  components: { toolbar, BodyTable, BodyAside },
+  components: { Body, Toolbar },
 };
 </script>
 <style lang="scss"></style>

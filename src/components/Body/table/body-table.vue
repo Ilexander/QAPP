@@ -63,17 +63,17 @@
   </div>
 </template>
 <script>
+import bodyMixin from "../utils/bodyMixin.js";
 export default {
+  mixins: [bodyMixin],
   data() {
     return {};
   },
 };
 </script>
 <style lang="scss" scoped>
-
 .body__table {
   padding-top: 10px;
   width: 100%;
 }
-
 </style>

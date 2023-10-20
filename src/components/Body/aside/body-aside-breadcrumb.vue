@@ -1,15 +1,13 @@
 <template>
   <ol
-    class="flex items-center whitespace-nowrap min-w-0 mb-3"
+    class="breadcrumb flex items-center whitespace-nowrap min-w-0 mb-3"
     aria-label="Breadcrumb"
   >
-    <li class="text-sm  cursor-pointer">
-      <div class="flex items-center text-gray-500 hover:text-blue-600" href="#">
-        Home
-      </div>
+    <li class="text-sm cursor-pointer disabled">
+      <div class="flex items-center text-gray-500">Home</div>
     </li>
-    <li class="text-sm cursor-pointer">
-      <div class="flex items-center text-gray-500 hover:text-blue-600" href="#">
+    <li class="text-sm cursor-pointer" v-for="item in pathArray" :key="item">
+      <div class="flex items-center text-gray-500 hover:text-blue-600">
         <svg
           class="flex-shrink-0 mx-2 overflow-visible h-2.5 w-2.5 text-gray-400 dark:text-gray-600"
           width="16"
@@ -25,16 +23,27 @@
             stroke-linecap="round"
           />
         </svg>
-        App Center
+        {{ item.name }}
       </div>
     </li>
   </ol>
 </template>
 <script>
+import bodyMixin from "../utils/bodyMixin.js";
+
 export default {
+  mixins: [bodyMixin],
   data() {
     return {};
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.breadcrumb {
+  .disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+</style>
