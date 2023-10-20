@@ -1,0 +1,14 @@
+@import "./base.css";
+
+#app {
+  width: 100%;
+  font-weight: normal;
+}
+
+.toolbar {
+  -webkit-app-region: drag;
+}
+
+.toolbar button {
+  -webkit-app-region: no-drag;
+}
