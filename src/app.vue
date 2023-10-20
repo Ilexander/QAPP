@@ -14,7 +14,9 @@ import toolbar from "./components/toolbar/toolbar.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      currentPath: '/'
+    };
   },
   components: { toolbar, BodyTable, BodyAside },
 };
