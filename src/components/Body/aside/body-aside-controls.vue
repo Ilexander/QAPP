@@ -40,11 +40,33 @@
       >
         <i class="ti ti-file-plus"></i>
       </button>
-      <UiDialog v-model:visible="visible">
-        <div>
-          <UiSelect v-model="fileType">
-            <UiSelectOption label="Test" value="test" />
-          </UiSelect>
+      <UiDialog
+        title="Create new analytic"
+        submitTitle="Create"
+        @submit="createFile"
+        v-model:visible="visible"
+      >
+        <div class="flex items-center">
+          <div class="w-full mr-2">
+            <div class="text-white mb-1">File name</div>
+            <input
+              v-model="fileProps.name"
+              type="text"
+              class="py-3 px-3 mr-1 block w-full rounded-md text-sm transition-all border bg-gray-900 border-gray-800 focus:border-gray-700 text-gray-400"
+              placeholder="Type name for file"
+            />
+          </div>
+          <div class="w-5/12">
+            <div class="text-white mb-1">File type</div>
+            <UiSelect placeholder="Choose file type" v-model="fileProps.type">
+              <UiSelectOption
+                v-for="item in typeOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </UiSelect>
+          </div>
         </div>
       </UiDialog>
     </div>
@@ -62,17 +84,40 @@ export default {
       visible: false,
       showPopover: false,
       dirName: "",
+      fileProps: {
+        type: "",
+        name: "",
+      },
+      typeOptions: [
+        {
+          label: "Qa format",
+          value: "json",
+        },
+        {
+          label: "CSV table",
+          value: "csv",
+        },
+        {
+          label: "XLSX table",
+          value: "xlsx",
+        },
+      ],
     };
   },
   methods: {
     createDir() {
       this.showPopover = false;
-      const path = this.path
-        .filter((el) => el?.isDir)
-        .map((el) => el.name)
-        .join("/");
+      const path = this.path;
+
       window.electron.createDir(path, this.dirName);
       this.$emit("refresh");
+    },
+    createFile() {
+      const path = this.path;
+      const { type, name } = this.fileProps;
+      window.electron.createFile(path, name, type);
+      this.$emit("refresh");
+      this.visible = false;
     },
     handleChange($event) {
       const value = $event.target.value;

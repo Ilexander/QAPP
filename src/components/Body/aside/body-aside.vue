@@ -1,6 +1,6 @@
 <template>
   <div class="flow-root body__aside">
-    <BodyAsideControls v-model="searchText" :path="path" @refresh="getFiles" />
+    <BodyAsideControls v-model="searchText" :path="joinedPath" @refresh="getFiles" />
     <BodyAsideBreadcrumb :path="path" @navigate="returnHome" />
     <ul class="-my-2 divide-y divide-gray-800">
       <li class="py-2">

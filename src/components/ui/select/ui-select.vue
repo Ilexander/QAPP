@@ -49,7 +49,10 @@ export default {
   },
   computed: {
     getOptionData() {
-      const slotData = this.$slots.default();
+      const slotData = this.$slots.default()[0].children.length
+        ? this.$slots.default()[0].children
+        : this.$slots.default();
+
       const currentOption = slotData.find(
         (el) => el.props.value === this.modelValue || el.props.label === this.modelValue
       );
@@ -114,6 +117,9 @@ export default {
   &__button {
     max-width: 320px;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     position: relative;
     .chevron {

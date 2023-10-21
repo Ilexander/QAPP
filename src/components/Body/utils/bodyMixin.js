@@ -15,11 +15,11 @@ export default {
       const path = this.path;
       const lastPath = path.at(-1);
 
-      if (lastPath?.isDir || dir || !path.length) {
+      if (lastPath?.isDir || dir && lastPath?.isDir || !path.length) {
         this.$emit("update:path", path.concat({ isDir: dir, name: pathName }));
-      } else if (!dir) {
+      } else if (!dir || !lastPath?.isDir) {
         const changedPath = path.map((el, idx) => {
-          if (idx === path.length - 1 && !dir) return { isDir: dir, name: pathName };
+          if (idx === path.length - 1) return { isDir: dir, name: pathName };
 
           return el;
         });
