@@ -5,14 +5,14 @@
   </div>
 </template>
 <script>
-import Body from "./components/Body/body.vue";
+import Body from "./components/body/body.vue";
 import Toolbar from "./components/toolbar/toolbar.vue";
 
 export default {
   data() {
     return {};
   },
-  components: { Body, Toolbar },
+  components: { Toolbar, Body },
 };
 </script>
 <style lang="scss"></style>

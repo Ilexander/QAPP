@@ -12,46 +12,87 @@
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
                 >
-                  Name
+                  №
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercas"
                 >
-                  Age
+                  Summary
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercas"
                 >
-                  Address
+                  Screenshots
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercas"
+                >
+                  Executor
                 </th>
                 <th
                   scope="col"
                   class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercas"
                 >
-                  Action
+                  Status
                 </th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-700">
               <tr>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
-                >
-                  John Brown
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">
+                  1
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">
-                  45
+                  Апишка не отрабатывает
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">
-                  New York No. 1 Lake Park
+                  <div>
+                    <img
+                      src="https://funart.pro/uploads/posts/2022-06/1654648306_67-funart-pro-p-koti-banda-zhivotnie-krasivo-foto-71.jpg"
+                      alt=""
+                    />
+                  </div>
                 </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                >
-                  <a class="text-blue-500 hover:text-blue-700" href="#"
-                    >Delete</a
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">Глеб</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white"
+                    >Todo</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">
+                  2
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">
+                  Шось там не працюе
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">-</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">Саня</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                    >QA</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200">
+                  3
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">
+                  Слетела вёрстка страницы
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">-</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-200">Макс</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <span
+                    class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-green-300 text-green-800"
+                    >Done</span
                   >
                 </td>
               </tr>
@@ -75,5 +116,11 @@ export default {
 .body__table {
   padding-top: 10px;
   width: 100%;
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
 }
 </style>

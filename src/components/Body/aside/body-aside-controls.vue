@@ -34,11 +34,19 @@
       </Transition>
 
       <button
+        @click="visible = true"
         type="button"
         class="py-2.5 px-4 inline-flex justify-center items-center gap-2 -ml-px first:rounded-l-md first:ml-0 last:rounded-r-lg border font-medium align-middle focus:z-10 focus:outline-none focus:ring-2 focus:ring-slate-950 transition-all text-base bg-slate-950 hover:bg-slate-800 border-gray-800 text-gray-400"
       >
         <i class="ti ti-file-plus"></i>
       </button>
+      <UiDialog v-model:visible="visible">
+        <div>
+          <UiSelect v-model="fileType">
+            <UiSelectOption label="Test" value="test" />
+          </UiSelect>
+        </div>
+      </UiDialog>
     </div>
   </div>
 </template>
@@ -50,6 +58,8 @@ export default {
   },
   data() {
     return {
+      fileType: "",
+      visible: false,
       showPopover: false,
       dirName: "",
     };
@@ -57,11 +67,12 @@ export default {
   methods: {
     createDir() {
       this.showPopover = false;
-      const path = this.path.filter((el) => el?.isDir).map(el => el.name).join("/");
-
-      console.log(path);
+      const path = this.path
+        .filter((el) => el?.isDir)
+        .map((el) => el.name)
+        .join("/");
       window.electron.createDir(path, this.dirName);
-      this.$emit('refresh')
+      this.$emit("refresh");
     },
     handleChange($event) {
       const value = $event.target.value;
