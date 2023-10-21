@@ -3,10 +3,10 @@
     class="breadcrumb flex items-center whitespace-nowrap min-w-0 mb-3"
     aria-label="Breadcrumb"
   >
-    <li class="text-sm cursor-pointer disabled">
+    <li class="text-sm cursor-pointer" :class="{ disabled: !pathArray.length }" @click="$emit('navigate', 0)">
       <div class="flex items-center text-gray-500">Home</div>
     </li>
-    <li class="text-sm cursor-pointer" v-for="item in pathArray" :key="item">
+    <li class="text-sm cursor-pointer" v-for="(item, index) in pathArray" :key="item" @click="$emit('navigate', index + 1)">
       <div class="flex items-center text-gray-500 hover:text-blue-600">
         <svg
           class="flex-shrink-0 mx-2 overflow-visible h-2.5 w-2.5 text-gray-400 dark:text-gray-600"

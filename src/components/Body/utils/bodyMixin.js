@@ -6,6 +6,9 @@ export default {
     pathArray() {
       return this.path;
     },
+    joinedPath() {
+      return this.path.filter((el) => el?.isDir).map(el => el.name).join("/");
+    },
   },
   methods: {
     addPath(pathName, dir = false) {
@@ -24,8 +27,8 @@ export default {
         this.$emit("update:path", changedPath);
       }
     },
-    removePath(count = 1) {
-      const path = this.path.slice(0, this.path.length - count);
+    removePath(count = 0) {
+      const path = this.path.slice(0, count);
 
       this.$emit("update:path", path);
     },

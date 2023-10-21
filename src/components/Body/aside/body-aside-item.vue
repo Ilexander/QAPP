@@ -7,15 +7,19 @@
         class="text-2xl mr-3 text-gray-500"
         :class="'ti ' + iconByFiletype(file.type)"
       ></i>
+     <div class="mr-auto">
       {{ file.name }}
+     </div>
 
-      <div class="text-xs text-zinc-500 ml-auto mr-4">
-        {{ formatFileSize(file.size) }}
-      </div>
-      <span
-        class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-medium bg-gray-300 text-gray-800"
-        >{{ file.type }}</span
-      >
+      <template v-if="!file.dir">
+        <div class="text-xs text-zinc-500 ml-auto mr-4">
+          {{ formatFileSize(file.size) }}
+        </div>
+        <span
+          class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-xs font-medium bg-gray-300 text-gray-800"
+          >{{ file.type }}</span
+        >
+      </template>
     </div>
   </li>
 </template>
@@ -34,6 +38,7 @@ export default {
     iconByFiletype(type) {
       const tables = ["csv", "xls", "xlsx"];
       if (tables.includes(type)) return "ti-file-spreadsheet";
+      if (type === "dir") return "ti-folder-filled";
     },
   },
 };
