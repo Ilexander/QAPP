@@ -1,18 +1,25 @@
 <template>
   <div class="ui-select">
-    <button
+    <div
+      class="ui-select__button"
       @click="handleClick"
+      :class="{ active: menuOpen }"
       ref="select"
-      :class="{ 'text-gray-600': !modelValue, active: menuOpen }"
-      class="ui-select__button py-3 px-4 gap-2 text-left rounded-md border-2 cursor-pointer w-full font-semibold border-gray-700 text-white bg-gray-900 outline-none focus:ring-2 focus:ring-gray-900 transition-all text-sm hover:bg-gray-900 :hover:border-gray-900 text-whit"
     >
-      {{
-        modelValue
-          ? getOptionData?.props?.label || getOptionData?.props?.value
-          : placeholder
-      }}
-      <i class="chevron ti ti-chevron-down"></i>
-    </button>
+      <slot name="button">
+        <button
+          :class="{ 'text-gray-600': !modelValue }"
+          class="py-3 px-4 gap-2 text-left rounded-md border-2 cursor-pointer w-full font-semibold border-gray-700 text-white bg-gray-900 outline-none focus:ring-2 focus:ring-gray-900 transition-all text-sm hover:bg-gray-900 :hover:border-gray-900 text-whit"
+        >
+          {{
+            modelValue
+              ? getOptionData?.props?.label || getOptionData?.props?.value
+              : placeholder
+          }}
+          <i class="chevron ti ti-chevron-down"></i>
+        </button>
+      </slot>
+    </div>
     <teleport to="body">
       <Transition>
         <div
@@ -67,6 +74,7 @@ export default {
       } else {
         document.body.removeEventListener("click", this.clickOnBody, true);
       }
+      this.$emit("visible", n);
     },
   },
   methods: {
@@ -80,7 +88,10 @@ export default {
       this.getSelectBounds();
     },
     clickOnBody($event) {
-      if ($event.target.className.match("ui-select__button")) return;
+      const isParentButton = $event.target.parentNode.className.match("ui-select__button")
+      const isButton = $event.target.className.match("ui-select__button")
+
+      if (isParentButton || isButton) return;
       this.menuOpen = false;
     },
   },
@@ -96,7 +107,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .v-enter-active,
 .v-leave-active {
   transition: transform 0.2s ease, opacity 0.2s ease;
