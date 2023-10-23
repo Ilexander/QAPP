@@ -163,6 +163,30 @@ export default {
       ],
     };
   },
+  watch: {
+    rowData: {
+      deep: true,
+      handler(n) {
+        this.$emit("tableData", {
+          colData: this.colData,
+          rowData: n,
+        });
+      },
+    },
+    path: {
+      deep: true,
+      immediate: true,
+      handler(n) {
+        if (!n.at(-1)?.isDir && n.length) {
+          const data = window.electron.readFile(this.allPath);
+          const { colData, rowData } = JSON.parse(data);
+
+          this.colData = colData;
+          this.rowData = rowData;
+        }
+      },
+    },
+  },
   components: { QaTableRow },
 };
 </script>

@@ -9,6 +9,9 @@ export default {
     joinedPath() {
       return this.path.filter((el) => el?.isDir).map(el => el.name).join("/");
     },
+    allPath() {
+      return this.path.map(el => el.name).join("/");
+    }
   },
   methods: {
     addPath(pathName, dir = false) {

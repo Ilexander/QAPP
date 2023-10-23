@@ -1,6 +1,15 @@
 <template>
   <div class="flex flex-col px-4 body__table">
-    <component is="qa-table"></component>
+    <component
+      v-if="path.length"
+      is="qa-table"
+      :path="path"
+      @tableData="handleChange"
+    ></component>
+    <div v-else class="flex items-center flex-col justify-center m-auto">
+      <div class="w-10 h-10 bg-white flex items-center justify-center rounded-full text-black text-3xl mb-3"><i class="ti ti-arrow-left"></i></div>
+      <div class="text-2xl text-gray-400">Choose the project from your list</div>
+    </div>
   </div>
 </template>
 <script>
@@ -13,6 +22,12 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    handleChange($event) {
+      const data = JSON.stringify($event);
+      window.electron.writeFile(this.allPath, data);
+    },
   },
 };
 </script>
